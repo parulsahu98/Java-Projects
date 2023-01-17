@@ -1,0 +1,57 @@
+import java.util.*;
+class Quiz { //All questions in this String q ↓↓↓↓↓↓↓ (String array)
+String q[] ={"how many states in india\n1: 24\t\t2: 30\n3: 32\t\t4: 28","how many district in mp\n1: 48\t\t2: 54\n3: 52\t\t4: 53","Which animal is known as the 'Ship of the Desert?\n1: camel\t\t2: horse\n3: penguine\t\t4: dog","How many days are there in a week?\n1: 4\t\t2: 9\n3: 7\t\t4: 8","How many hours are there in a day?\n1: 24\t\t2: 29\n3: 27\t\t4: 18","How many letters are there in the English alphabet?\n1: 22\t\t2: 24\n3: 25\t\t4: 26"," Rainbow consist of how many colours?\n1: 4\t\t2: 9\n3: 7\t\t4: 8"," How many days are there in a year?\n1: 324\t\t2: 329\n3: 365\t\t4: 345"," How many minutes are there in an hour?\n1: 54\t\t2: 59\n3: 60\t\t4: 65"," How many seconds are there in a minute?\n1: 52\t\t2: 33\n3: 63\t\t4: 60"," How many seconds make one hour?\n1: 5434\t\t2: 2459\n3: 3600\t\t4: 6465"," Baby frog is known as.......\n1: tadpole\t\t2: south pole\n3: piddi\t\t4: tifer"," How many consonants are there in the English alphabet?\n1: 21\t\t2: 23\n3: 17\t\t4: 18"," How many vowels are there in the English alphabet and name them?\n1: 4\t\t2: 9\n3: 5\t\t4: 2"," Which animal is known as the king of the jungle?\n1: My friend\t\t2: lion\n3: tiger\t\t4: elephant",
+    " Name the National bird of India?\n1: eagle\t\t2: peacock\n3: butterfly\t\t4: parrot"," Name the National animal of India?\n1: lion\t\t2: dog\n3: tiger\t\t4: wolf"," What is the National Anthem of India?\n1: jan gan man\t\t2: sare jaha se achha\n3: ye desh he veer\t\t4: teri mitti"," Name the national flower of India?\n1: lotus\t\t2: rose\n3: lily\t\t4: sunflower"," Name the National fruit of India?\n1: carrot\t\t2: mango\n3: banana\t\t4: none of the above"," What is the National song of India?\n1: vande mataram\t\t2: ae watan \n3: a and b\t\t4: nota"," Who designed the National Flag of India?\n1: Pingali venkayya\t\t2: venugopal\n3: aiyyar\t\t4: chinnaswami"," Name the National game of India?\n1: hockey\t\t2: cricket\n3: tennis\t\t4: wrestling"," Name the National tree of India?\n1: banyan\t\t2: mango\n3: oak\t\t4: nota"," Name the National river of India?\n1: kshipra\t\t2: ganga\n3: narmada\t\t4: sabarmati"," Sun rises in the.....\n1: east\t\t2: west\n3: north\t\t4: south"," What is the capital of India?\n1: I\t\t2: delhi\n3: new delhi\t\t4: nota","Name the biggest continent in the world?\n1: Asia\t\t2: Austalia\n3: Europe\t\t4: america", "Which is the smallest month of the year?\n1: feb\t\t2: march\n3: may\t\t4: september","Name the largest mammal?\n1: Blue whale\t\t2: elephant\n3: Titan\t\t4: ant"};//Questions of Quiz 
+        int MainAns[]=new int[]{4,3,1,3,1,4,3,3,3,4,3,1,1,3,2,2,3,1,1,2,1,1,1,1,2,1,2,1,1,1};  //Main Answer sheet
+        static int count[] = new int[30]; // static variable for repeat condition 
+        static int Ans[] = new int[30];  // static variable for store user answers
+        static int check=0,total=0;
+    public static void main(String args[])  {
+         System.out.println("\n\t\t\t\t\tWelcome to infoQuiz");
+         Quiz t=new Quiz();
+    }
+        Quiz() {           //method for asking Questions 
+         int ch;
+             Scanner sc = new Scanner(System.in);
+             while(true)    {
+             System.out.print("\n ");
+         for(int i=1;i<=30;i++){
+              System.out.print(i+" ");
+        }
+            System.out.println("\nenter question number\n");
+            ch=sc.nextInt();    //choice (question selection)
+        if(count[ch-1]!=0) {                // condtion for repeatation of question
+            System.out.println("You already attend this question\n ");
+            continue;           
+        }
+        else  { int ans;
+            System.out.println(q[ch-1]);
+            do {                               // validation for options 1-4
+                System.out.println("ENTER ANSWER.........");
+                ans=sc.nextInt();
+            }while(ans!=1&&ans!=2&&ans!=3&&ans!=4);
+            Quiz.Ans[ch-1]=ans;                // User answer stored in an array
+            Quiz.count[ch-1]=1;                // count for repeating questions
+            Quiz.check++;                       // check++ for 30 question
+            if(check==30) {             
+             this.result();
+            }
+    }    }}
+    void result() {         //result of Quiz
+                int i=0;
+                System.out.println("\n\nYour result\n");
+            for(i=0;i<30;i++){
+                System.out.println(q[i]+"\n");  //Print Question 
+                if(Ans[i]==MainAns[i])  {           //check condition for User answer and Right answer
+                      System.out.println("option "+MainAns[i]+" Correct Answer:\n");
+                        Quiz.total++;}
+                     else {
+                System.out.println("your choice "+Ans[i]+" Incorrect Answer\n");
+                System.out.println("option "+MainAns[i]+" Correct Answer:\n");
+        }   }
+            System.out.println("\nYour Marks => "+total+"/30\n\n ENTER ANY KEY TO EXIT......");//Print result
+            Scanner scan=new Scanner(System.in);
+            scan.nextLine();        //Screen hold
+            System.exit(0);     // Exit
+    }          
+}
